@@ -69,7 +69,7 @@ client.on('message', m => {
     }
   }
 
-  if (m.content.startsWith(`${botMention} d`)) { // destroy
+  if (m.content.startsWith(`${botMention} destroy`)) { // destroy
     if (!boundChannel) return;
     client.reply(m, `Unbinding from <#${boundChannel.id}> and destroying voice connection`);
     playQueue = [];
@@ -85,6 +85,10 @@ client.on('message', m => {
 
   if (m.content.startsWith(`${botMention} n`)) { // next
     playStopped();
+  }
+
+  if (m.content.startsWith(`${botMention} help`)) { // next
+    m.reply("```Mention bot at the  start of all commands \n yt (vid id), \n yq (playlist id), \n l to list,\n n to skip, \n destroy to destroy```");
   }
 
   if (m.content.startsWith(`${botMention} yq`) // youtube query
