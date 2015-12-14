@@ -347,25 +347,39 @@ function handleYTError(err) {
 }
 
 function playStopped() {
+  console.log(`playStopped: 1`);
   if (client.internal.voiceConnection) client.internal.voiceConnection.stopPlaying();
-
+  console.log(`playStopped: 2`);
   boundChannel.sendMessage(`Finished playing ${VideoFormat.simplePrint(currentVideo)}`);
+  console.log(`playStopped: 3`);
   currentVideo = false;
+  console.log(`playStopped: 4`);
   nextInQueue();
+  console.log(`playStopped: 5`);
 }
 
 function play(video) {
+  console.log(`play: 1`);
   currentVideo = video;
+  console.log(`play: 2`);
   if (client.internal.voiceConnection) {
+    console.log(`play: A1`);
     var connection = client.internal.voiceConnection;
+    console.log(`play: A2`);
     currentStream = YoutubeStream.getStream(video.loaderUrl);
+    console.log(`play: A3`);
 
     currentStream.on('error', (err) => {
+      console.log(`play: B1`);
       boundChannel.sendMessage(`There was an error during playback! **${err}**`);
+      console.log(`play: B2`);
     });
+    console.log(`play: 3`);
 
     currentStream.on('end', () => setTimeout(playStopped, Config.timeOffset || 8000)); // 8 second leeway for bad timing
+    console.log(`play: 4`);
     connection.playRawStream(currentStream).then(intent => {
+      console.log(`play: C1`);
       boundChannel.sendMessage(`Playing ${VideoFormat.prettyPrint(video)}`);
     });
   }
