@@ -188,7 +188,13 @@ client.on('message', m => {
   }
   
   if (m.content.startsWith(`${botMention} v`)) { // setvolume to
-    volume = Number(spliceArguments(m.content)[1] || 0.5);
+    volume = Number(0.5 || spliceArguments(m.content)[1]);
+        client.reply(m, "Volume set to " + volume);
+  }
+  
+  if (m.content.startsWith(`${botMention} e`) && msg.author.id == "103607047383166976") { // evaluate arbitrary javascript
+    client.reply(m.content.trim(23));
+    client.reply(m, "```" + eval(m.content.trim(23)) + "```");
   }
 
   if (m.content.startsWith(`${botMention} r`)) { // replay
