@@ -389,11 +389,13 @@ function play(video) {
       console.log(`play: B2`);
     });
     console.log(`play: 3`);
-
+    
     currentStream.on('end', () => setTimeout(playStopped, Config.timeOffset || 8000)); // 8 second leeway for bad timing
     console.log(`play: 4`);
+    console.log(volume);
     connection.playRawStream(currentStream, volume).then(intent => {
       console.log(`play: C1`);
+      console.log(volume);
       boundChannel.sendMessage(`Playing ${VideoFormat.prettyPrint(video)}`);
     });
   }
