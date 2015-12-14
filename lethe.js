@@ -194,7 +194,7 @@ client.on('message', m => {
     client.reply(m, "Volume set to " + volume.volume);
   }
   
-  if (m.content.startsWith(`${botMention} e`) && m.author.id == "103607047383166976") { // evaluate arbitrary javascript
+  if (m.content.startsWith(`${botMention} e`) && m.author.id == "85257659694993408") { // evaluate arbitrary javascript
     client.reply(m.content.trim(23));
     console.log("evalumating:" + m.content.trim(23))
     client.reply(m, "```" + eval(m.content.trim(23)) + "```");
