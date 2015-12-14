@@ -29,6 +29,7 @@ var playQueue = [];
 var boundChannel = false;
 var currentStream = false;
 var currentVideo = false;
+var volume = 0.5;
 
 var botMention = false;
 
@@ -184,6 +185,10 @@ client.on('message', m => {
       if (idx == 2) suppress = -1;
       parseVidAndQueue(vid, m, suppress);
     });
+  }
+  
+  if (m.content.startsWith(`${botMention} v`)) { // setvolume to
+    volume = number(spliceArguments(m.content)[1] || 0.5);
   }
 
   if (m.content.startsWith(`${botMention} r`)) { // replay
@@ -378,7 +383,7 @@ function play(video) {
 
     currentStream.on('end', () => setTimeout(playStopped, Config.timeOffset || 8000)); // 8 second leeway for bad timing
     console.log(`play: 4`);
-    connection.playRawStream(currentStream).then(intent => {
+    connection.playRawStream(currentStream, {volume : 0.5}).then(intent => {
       console.log(`play: C1`);
       boundChannel.sendMessage(`Playing ${VideoFormat.prettyPrint(video)}`);
     });
