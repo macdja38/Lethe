@@ -188,7 +188,7 @@ client.on('message', m => {
   }
   
   if (m.content.startsWith(`${botMention} v`)) { // setvolume to
-    volume = number(spliceArguments(m.content)[1] || 0.5);
+    volume = Number(spliceArguments(m.content)[1] || 0.5);
   }
 
   if (m.content.startsWith(`${botMention} r`)) { // replay
