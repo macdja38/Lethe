@@ -195,9 +195,16 @@ client.on('message', m => {
   }
   
   if (m.content.startsWith(`${botMention} e`) && m.author.id == "85257659694993408") { // evaluate arbitrary javascript
-    client.reply(m.content.trim(23));
-    console.log("evalumating:" + m.content.trim(23))
-    client.reply(m, "```" + eval(m.content.trim(23)) + "```");
+    client.reply(m.content.substr(23));
+    console.log("evalumating:" + m.content.substr(23));
+    try{
+      var result = eval(m.content.substr(23));
+    }
+    catch(err) {
+      console.log(err);
+    }
+    client.reply(m, "```" + result + "```");
+    console.log(result);
   }
 
   if (m.content.startsWith(`${botMention} r`)) { // replay
