@@ -91,7 +91,7 @@ client.on('message', m => {
   }
 
   if (m.content.startsWith(`${botMention} help`)) { // next
-    m.reply("```Mention bot at the  start of all commands \n yt (vid id), \n pl (playlist id), \n l to list,\n n to skip, \n yq search youtube, \n destroy to destroy```");
+    m.reply("```Mention bot at the start of all commands \n yt (vid id), \n pl (playlist id), \n l to list,\n n to skip, \n yq search youtube, \n destroy to destroy```");
   }
 
   if (m.content.startsWith(`${botMention} yq`) // youtube query
